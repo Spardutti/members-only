@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+    div(class="signup-form")
+        h3 Por favor completa los campos requeridos
+        form(action="" method="POST" class="form-container")
+            input(type="text" placeholder="nombre" name="name" required)
+            input(type="text" placeholder="apellido" name="lastname" required)
+            input(type="text" placeholder="usuario" name="user" required)
+            input(type="text" placeholder="contraseña" name="pass" required)
+            button Sign up
+        if errors
+            ul
+                for error in errors
+                    li=error.msg
