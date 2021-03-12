@@ -10,12 +10,16 @@ const mongoBD = process.env.MONGO_URL;
 const db = mongoose.connection;
 mongoose.connect(mongoBD, { useUnifiedTopology: true, useNewUrlParser: true });
 db.on("error", console.error.bind(console, "MongoDB connection error"));
+const passport = require("passport");
+const session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 let homeRouter = require("./routes/home");
 
 var app = express();
+
+require("./config/passport")(passport);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -26,6 +30,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+
+app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

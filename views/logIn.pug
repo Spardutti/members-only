@@ -1,0 +1,14 @@
+extends home
+
+block content
+
+    div(class="signup-form")
+        if user
+            h1 hola #{user.username}
+        else
+            h3 Introduce usuario y contraseña
+            form(action="" method="POST" class="form-container")
+                input(type="text" placeholder="usuario" name="username" required)
+                input(type="password" placeholder="contraseña" name="password" required)
+                button Log in
+        
