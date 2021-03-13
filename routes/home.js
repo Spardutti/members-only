@@ -5,7 +5,11 @@ const LocalStrategy = require("passport").Strategy;
 
 
 let userController = require("../controllers/userController");
+let postController = require("../controllers/postController");
 
+router.get("/post", function (req, res, next) {
+    res.render("post")
+})
 
 //HOME PAGE
 router.get("/home", userController.home);
@@ -21,5 +25,17 @@ router.get("/login", userController.logIn);
 
 //LOG IN POST
 router.post("/login", userController.logInPost);
+
+//LOG OUT GET
+router.get("/logout", userController.logOut);
+
+
+/////////////////////////////////////// POST //////////////////////////////////
+
+//GET POST FORM
+router.get("/post", postController.postGet);
+
+//POST POST FORM
+router.post("/post", postController.postPost);
 
 module.exports = router;

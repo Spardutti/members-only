@@ -5,10 +5,17 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 let User = require("../models/user");
+let Post = require("../models/post");
 
 //HOME
 exports.home = function (req, res, next) {
-  res.render("home", { user: req.user });
+  Post.find({}, "author title text")
+    .populate("author")
+    .exec(function (err, postlist) {
+      if (err) return next(err);
+      //Success
+      res.render("home", { posts: postlist });
+    });
 };
 
 //SIGN UPFORM GET
@@ -80,7 +87,7 @@ exports.signInPost = [
 
 //LOG IN GET
 exports.logIn = function (req, res, next) {
-  res.render("logIn", { user: req.user });
+  res.render("logIn");
 };
 
 //LOG IN POST
@@ -90,3 +97,10 @@ exports.logInPost = function (req, res, next) {
     failureRedirect: "/logIn",
   })(req, res, next);
 };
+
+
+// LOG OUT GET
+exports.logOut = function (req, res, next) {
+  req.logout();
+  res.redirect("/home");
+}

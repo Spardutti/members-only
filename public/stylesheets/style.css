@@ -8,7 +8,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
- html {
+html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -174,7 +174,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -184,7 +185,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -348,21 +350,27 @@ template {
   display: none;
 }
 
-/* HEADER NAV BAR */
+/***************************************** HEADER NAV BAR *************************/
 .header-nav {
-display: grid;
-grid-template-columns: 11fr 1.5fr;
-text-align: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
 }
 
 .header-nav h1 {
   font-size: 3em;
 }
+.header-nav h1 a {
+  text-decoration: none;
+  color: black;
+}
 .header-btns {
-display: flex;
-justify-content: space-around;
-align-items: center;
-font-size: 1em;
+  font-size: 1em;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .header-btns a {
@@ -374,6 +382,58 @@ font-size: 1em;
   border-radius: 20px;
   color: white;
   width: 70px;
+}
+
+/*********************************** POST MESSAGES *************************/
+.posts-container {
+  width: 70%;
+  height: 75vh;
+  margin: auto;
+}
+.posts-header {
+  display: flex;
+  background-color: black;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  min-height: 100px;
+  justify-content: center;
+}
+.posts-header a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+.create-post-btn {
+  background-color: darkblue;
+  padding: 10px 10px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 2px blue;
+}
+.signup-form textarea{
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+/********** SINGLE POST */
+.single-post-container {
+  
+}
+.post {
+  background-color: blue;
+  margin: 10px auto;
+  width: 50%;
+  text-align: center;
+  padding: 5px;
 }
 
 /*********************************** SIGN UP FORM *************************/
@@ -417,11 +477,9 @@ input {
 }
 .error-container {
   display: flex;
-justify-content: center;
-text-align: left;
+  justify-content: center;
+  text-align: left;
 }
-
-
 
 /***************************************************** FOOTER ******************/
 .foot {

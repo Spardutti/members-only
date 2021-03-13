@@ -32,9 +32,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
-app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "secret", resave: false, saveUninitialized: true, }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// test 
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

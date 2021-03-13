@@ -3,11 +3,39 @@ extends layout
 block header 
     div(class="header-nav")
       div
-        h1 Members Only
-      if user
-        p hi #{user.username}
+        h1
+          a(href="/home") Members Only 
+      if login
+        div(class="header-btns")
+          p hi #{user.username}
+          a(href="/logout") Salir
       else    
         div(class="header-btns")
             a(href="/signIn") Sign in
             a(href="/logIn") Log in
     hr(width="85%")
+
+block content
+
+    div(class="posts-container")
+      div(class="posts-header")
+        if login 
+          a(href="/post" class="create-post-btn") Crea un Post 
+        else 
+          p Accede a tu 
+            a(href="/logIn") cuenta 
+            | para ver el contenido
+          p No tienes cuenta ? Crea una 
+            a(href="/signIn") aqui!   
+      div(class="single-post-container")
+        each post in posts
+          div(class="post")
+            h3 #{post.title}
+            if login
+              p #{post.text}
+              if post.author.isVip  
+                p #{post.author.username}
+              else 
+                p Necesitas ser VIP para ver el autor
+            else 
+              p Accede a tu cuenta para visualizar el contenido
