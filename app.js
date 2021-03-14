@@ -36,7 +36,7 @@ app.use(session({ secret: "secret", resave: false, saveUninitialized: true, }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// test 
+// makes the user global to all views
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();
   res.locals.user = req.user;

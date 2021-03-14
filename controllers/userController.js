@@ -9,7 +9,7 @@ let Post = require("../models/post");
 
 //HOME
 exports.home = function (req, res, next) {
-  Post.find({}, "author title text")
+  Post.find({}, "author title text createdAt")
     .populate("author")
     .exec(function (err, postlist) {
       if (err) return next(err);
@@ -92,15 +92,88 @@ exports.logIn = function (req, res, next) {
 
 //LOG IN POST
 exports.logInPost = function (req, res, next) {
-  passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/logIn",
+  passport.authenticate("local", function (err, user, info) {
+    if (err) return next(err);
+    if (!user) {
+      res.render("logIn", { error: "usuario o contraseña invalido" });
+    } else {
+      req.logIn(user, function () {
+        res.redirect("/home");
+      });
+    }
   })(req, res, next);
 };
-
 
 // LOG OUT GET
 exports.logOut = function (req, res, next) {
   req.logout();
   res.redirect("/home");
+};
+
+// VIP GET
+exports.vipGet = function (req, res, next) {
+  res.render("vip");
+};
+
+//VIP POST
+exports.vipPost = [
+  body("name").toLowerCase().equals("1987").withMessage("Incorrecto!"),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const user = new User({
+      username: req.user.username,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      password: req.user.password,
+      isVip: true,
+      _id: req.user._id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("vip", { errors: errors.array() });
+    } else {
+      User.findByIdAndUpdate(req.user._id, user, {}, function (err, vip) {
+        if (err) return next(err);
+        res.redirect("/home");
+      });
+    }
+  },
+];
+
+
+//ADMIN GET
+exports.admingGet = function (req, res, next) {
+  res.render("admin");
 }
+
+//ADMIN POST
+exports.adminPost = [
+  body("name").toLowerCase().equals("1899").withMessage("Incorrecto!"),
+
+  (req, res, next) => {
+    const errors = validationResult(req)
+
+    const user = new User({
+      username: req.user.username,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      password: req.user.password,
+      isVip: req.user.isVip,
+      isAdmin: true,
+      _id: req.user._id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("admin", {errors: errors.array()})
+    }
+    else {
+      User.findByIdAndUpdate(req.user._id, user, {}, function (err, admin) {
+        if (err) return next(err);
+        //Success
+        res.redirect("/home");
+      })
+    }
+  }
+]

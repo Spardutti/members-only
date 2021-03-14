@@ -24,6 +24,7 @@ exports.postPost = [
         title: req.body.title,
         text: req.body.text,
         author: req.user,
+        time: req.body.createdAt
       }).save((err) => {
         if (err) return next(err);
         //Success
@@ -32,3 +33,12 @@ exports.postPost = [
     }
   },
 ];
+
+//POST DELETE POST
+exports.deletePostPost = function (req, res, next) {
+  Post.findByIdAndRemove(req.body._id, function deletePost(err) {
+    if (err) return next(err)
+    //Success
+    res.redirect("/home");
+  })
+}

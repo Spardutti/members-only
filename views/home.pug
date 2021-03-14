@@ -7,7 +7,16 @@ block header
           a(href="/home") Members Only 
       if login
         div(class="header-btns")
-          p hi #{user.username}
+          if user.isAdmin 
+            p #{user.username}
+            p Administrador
+          else if user.isVip
+            p  #{user.username}
+            p Usuario VIP
+            a(href="/admin") Admin   
+          else
+            p #{user.username}  
+            a(href="/vip") VIP
           a(href="/logout") Salir
       else    
         div(class="header-btns")
@@ -37,5 +46,8 @@ block content
                 p #{post.author.username}
               else 
                 p Necesitas ser VIP para ver el autor
+              p #{post.timeago}
+              if user.isAdmin 
+                button borrar 
             else 
               p Accede a tu cuenta para visualizar el contenido

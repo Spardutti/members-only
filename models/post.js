@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { DateTime } = require("luxon");
+const moment = require("moment");
 
 const Schema = mongoose.Schema;
 
@@ -10,5 +12,10 @@ let PostSchema = new Schema(
   },
   { timestamps: true }
 );
+
+
+PostSchema.virtual("timeago").get(function () {
+  return moment(DateTime.fromJSDate(this.createdAt).toLocaleString(DateTime.DATETIME_MED)).fromNow();
+})
 
 module.exports = mongoose.model("Post", PostSchema);

@@ -17,7 +17,7 @@ module.exports = function (passport) {
             return done(null, user);
           }
           //wrong password
-          else return done(null, false, { message: "Contraseña invalida" });
+          else return done(null, false, { message: "Contraseña o usuario invalido" });
         });
       });
     })

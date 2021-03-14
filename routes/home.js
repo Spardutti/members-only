@@ -29,6 +29,17 @@ router.post("/login", userController.logInPost);
 //LOG OUT GET
 router.get("/logout", userController.logOut);
 
+//VIP GET
+router.get("/vip", userController.vipGet);
+
+//VIP POST
+router.post("/vip", userController.vipPost);
+
+//ADMIN GET
+router.get("/admin", userController.admingGet);
+
+//ADMING POST
+router.post("/admin", userController.adminPost);
 
 /////////////////////////////////////// POST //////////////////////////////////
 
@@ -37,5 +48,9 @@ router.get("/post", postController.postGet);
 
 //POST POST FORM
 router.post("/post", postController.postPost);
+
+
+//POST DELETE POST
+router.post("/post", postController.deletePostPost);
 
 module.exports = router;
