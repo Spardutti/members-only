@@ -406,7 +406,6 @@ template {
 .post-text {
   background-color: rgb(187, 184, 184);
   box-shadow: -3px 3px 5px 2px black;
-  height: 240px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   overflow-y: scroll;
@@ -528,11 +527,11 @@ transition: all 0.3s;
   align-items: center;
 }
 .header-nav h1 {
-  font-size: 2em;
+  font-size: 1.7em;
   margin-left: 10px;
 }
 .header-btns {
-  font-size: .8em;
+  font-size: .6em;
 }
 hr {
   margin-top: 30px;
@@ -555,7 +554,6 @@ hr {
 .post-text {
   background-color: rgb(187, 184, 184);
   box-shadow: -3px 3px 5px 2px black;
-  height: 100px;
   overflow: hidden;
   overflow-y: scroll;
   border-radius: 15px;
@@ -572,5 +570,9 @@ input {
 }
 .form-container button {
   width: 30%;
+}
+.foot {
+  font-size: .4em;
+  text-align: center;
 }
 }
