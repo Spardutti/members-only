@@ -406,13 +406,15 @@ template {
 .post-text {
   background-color: rgb(187, 184, 184);
   box-shadow: -3px 3px 5px 2px black;
-  height: 200px;
+  height: 240px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   overflow-y: scroll;
   border-radius: 15px;
   text-align: left;
   padding-left: 3px;
+  color: black;
+  line-height: 1.5;
 }
 .posts-header a {
   text-decoration: none;
