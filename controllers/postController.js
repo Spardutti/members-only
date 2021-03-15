@@ -1,5 +1,6 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
+const async = require("async");
 
 let Post = require("../models/post");
 let User = require("../models/user");
@@ -24,7 +25,7 @@ exports.postPost = [
         title: req.body.title,
         text: req.body.text,
         author: req.user,
-        time: req.body.createdAt
+        time: req.body.createdAt,
       }).save((err) => {
         if (err) return next(err);
         //Success
@@ -34,11 +35,11 @@ exports.postPost = [
   },
 ];
 
-//POST DELETE POST
-exports.deletePostPost = function (req, res, next) {
-  Post.findByIdAndRemove(req.body._id, function deletePost(err) {
-    if (err) return next(err)
-    //Success
+// DELETE POST OIST
+exports.deletePostGet = function (req, res, next) {
+  Post.findByIdAndRemove(req.body.postid, function remove(err) {
+    if (err) return next(err);
+    //Sucess
     res.redirect("/home");
-  })
-}
+  });
+};

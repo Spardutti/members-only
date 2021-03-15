@@ -49,8 +49,8 @@ router.get("/post", postController.postGet);
 //POST POST FORM
 router.post("/post", postController.postPost);
 
+//DELETE POST POST
+router.post("/home", postController.deletePostGet);
 
-//POST DELETE POST
-router.post("/post", postController.deletePostPost);
 
 module.exports = router;

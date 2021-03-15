@@ -402,6 +402,16 @@ template {
   justify-content: center;
   margin-top: 77px;
 }
+
+.post-text {
+  background-color: rgb(187, 184, 184);
+  box-shadow: -3px 3px 5px 2px black;
+  height: 200px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  overflow-y: scroll;
+  border-radius: 15px;
+}
 .posts-header a {
   text-decoration: none;
   font-weight: bold;
@@ -438,7 +448,7 @@ template {
   border-radius: 15px;
 }
 
-.post a {
+.post button {
  text-decoration: none;
  background-color: darkred;
  padding: 10px 10px;
@@ -501,4 +511,62 @@ input {
   width: 100%;
   color: white;
   margin-top: 20px;
+}
+
+@media only screen and (max-width: 420px) {
+  /***************************************** HEADER NAV BAR *************************/
+body {
+transition: all 0.3s;
+}
+  .header-nav {
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+}
+.header-nav h1 {
+  font-size: 2em;
+  margin-left: 10px;
+}
+.header-btns {
+  font-size: .8em;
+}
+hr {
+  margin-top: 30px;
+}
+/*********************************** POST MESSAGES *************************/
+.posts-container {
+  width: 90%;
+  margin-bottom: 50px;
+}
+.posts-header {
+  margin-top: 30px;
+}
+
+/********** SINGLE POST */
+.post {
+  margin: 30px auto;
+  width: 80%;
+}
+
+.post-text {
+  background-color: rgb(187, 184, 184);
+  box-shadow: -3px 3px 5px 2px black;
+  height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: 15px;
+}
+
+
+/*********************************** SIGN UP FORM *************************/
+.signup-form {
+  margin-top: 30px;
+  width: 90%;
+}
+input {
+  width: 60%;
+}
+.form-container button {
+  width: 30%;
+}
 }

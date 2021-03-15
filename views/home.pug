@@ -2,7 +2,7 @@ extends layout
 
 block header 
     div(class="header-nav")
-      div
+      div(class="header-title")
         h1
           a(href="/home") Members Only 
       if login
@@ -41,13 +41,16 @@ block content
           div(class="post")
             h3 #{post.title}
             if login
-              p #{post.text}
+              div(class="post-text")
+                p #{post.text}
               if post.author.isVip  
-                p #{post.author.username}
+                p Creado por: #{post.author.username}
               else 
                 p Necesitas ser VIP para ver el autor
               p #{post.timeago}
               if user.isAdmin 
-                button borrar 
+                form(action="" method="POST")
+                  input(type="hidden" name="postid" value=post._id) 
+                  button Borrar
             else 
               p Accede a tu cuenta para visualizar el contenido

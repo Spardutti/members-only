@@ -18,4 +18,8 @@ PostSchema.virtual("timeago").get(function () {
   return moment(DateTime.fromJSDate(this.createdAt).toLocaleString(DateTime.DATETIME_MED)).fromNow();
 })
 
+PostSchema.virtual("url").get(function () {
+  return "/delete/" + this._id;
+})
+
 module.exports = mongoose.model("Post", PostSchema);
