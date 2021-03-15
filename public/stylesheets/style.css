@@ -411,6 +411,8 @@ template {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   overflow-y: scroll;
   border-radius: 15px;
+  text-align: left;
+  padding-left: 3px;
 }
 .posts-header a {
   text-decoration: none;
